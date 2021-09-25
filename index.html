@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="style.css" />
+        <title>Метод Гауса</title>
+    </head>
+    <body>
+        <div class="matrixCalc">
+            <select id="sizeMatrix">
+                <option>2x2</option>
+                <option>3x3</option>
+                <option>4x4</option>
+                <option>5x5</option>
+                <option>6x6</option>
+                <option>7x7</option>
+                <option>8x8</option>
+                <option>9x9</option>
+                <option>Выбрать свой вариант</option>  
+            </select>
+            <div class = "Custom"></div>
+            <input id="sizeMatrixButton" type="button" value="Выбрать этот размер"></input>
+            <div class = "Matrix"></div>
+            <input id="calculateButton" type="button" value="Посчитать"></input>
+        </div>
+        <script src="jquery.js"></script>
+        <script src="script.js"></script>
+    </body>
+</html>
