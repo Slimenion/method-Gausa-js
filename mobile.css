@@ -54,3 +54,7 @@ select {
     display: flex;
     justify-content: space-around;
 }
+.answer {
+    background-color: #ffffff;
+    padding: 10px;
+}

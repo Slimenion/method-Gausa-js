@@ -268,19 +268,21 @@ $("#calculateButton").click(function () {
     if (
         FindX(B) == "Либо решений не существует, либо их бесконечное множество."
     ) {
-        var $answer = $("<p>" + FindX(B) + "</p>");
+        var $answer = $(`<div class="answer"><p>` + FindX(B) + `</p></div>`);
         $answer.appendTo(".matrixCalc");
     } else {
         var $answer = $(FindX(B));
         var $myNewElement = [];
+        var $totalAnswer = `<div class="answer">`;
         for (var i = 0; i < B.length; i++) {
-            $myNewElement[i] = $("<p> x" + i + " = " + $answer[i] + "</p>");
+            $myNewElement[i] = "<p> x" + i + " = " + $answer[i] + "</p>";
         }
         for (var i = 0; i < B.length; i++) {
-            $myNewElement[i].appendTo(".matrixCalc");
+            $totalAnswer = $totalAnswer + $myNewElement[i];
         }
-        $myNewElement = $("<p>^Решение^</p>");
-        $myNewElement.appendTo(".matrixCalc");
+        $totalAnswer = $totalAnswer + "</div>";
+        $totalAnswer = $($totalAnswer);
+        $totalAnswer.appendTo(".matrixCalc");
     }
     B = [];
 });
