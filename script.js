@@ -1,3 +1,18 @@
+$(document).ready(function () {
+    $(window).bind("resize", resizeWindow);
+    function resizeWindow(e) {
+        var newWindowWidth = $(window).width();
+
+        // Если ширина меньше 600 px, используется таблица стилей для мобильного
+        if (newWindowWidth < 600) {
+            $("link[rel=stylesheet]").attr({ href: "mobile.css" });
+        } else if (newWindowWidth > 600) {
+            // Если ширина больше 600 px, используется таблица стилей для десктопа
+            $("link[rel=stylesheet]").attr({ href: "style.css" });
+        }
+    }
+});
+
 var B = [];
 var A = [];
 
@@ -146,34 +161,60 @@ function addNewElement(newElem, classIdWhereAdded) {
     $elem.appendTo(classIdWhereAdded);
 }
 
-function createLineX(sizeX) {
-    //создание верхней строчки
-    var $lineX;
-    $lineX = '<div class="lineX">';
-    for (var i = 0; i < sizeX; i++) {
-        $lineX = $lineX + "<p>x" + i + "</p>";
-    }
-    $lineX = $lineX + "</div>";
-    return $lineX;
-}
-
 function createInputMatrix(sizeMatrix) {
     sizeMatrix;
     var $newMatrix = '<div class="newMatrix">';
     for (var i = 0; i < sizeMatrix; i++) {
         $newMatrix = $newMatrix + '<div class = "lineMatrix"> ';
         for (var j = 0; j <= sizeMatrix; j++) {
-            $newMatrix =
-                $newMatrix +
-                ' <input type="text" class = "matrixCell" id="size' +
-                sizeMatrix +
-                "x" +
-                sizeMatrix +
-                "_" +
-                i +
-                "_" +
-                j +
-                '"/>';
+            if (i == 0) {
+                if (j != sizeMatrix) {
+                    $newMatrix =
+                        $newMatrix +
+                        `<div class="tittleMatrix">
+                                                <p>x` +
+                        j +
+                        `</p>` +
+                        '<input type="text" class = "matrixCell" id="size' +
+                        sizeMatrix +
+                        "x" +
+                        sizeMatrix +
+                        "_" +
+                        i +
+                        "_" +
+                        j +
+                        '"/>' +
+                        "</div>";
+                } else {
+                    $newMatrix =
+                        $newMatrix +
+                        `<div class="tittleMatrix">
+                                                <p>f(xi)` +
+                        `</p>` +
+                        '<input type="text" class = "matrixCell" id="size' +
+                        sizeMatrix +
+                        "x" +
+                        sizeMatrix +
+                        "_" +
+                        i +
+                        "_" +
+                        j +
+                        '"/>' +
+                        "</div>";
+                }
+            } else {
+                $newMatrix =
+                    $newMatrix +
+                    ' <input type="text" class = "matrixCell" id="size' +
+                    sizeMatrix +
+                    "x" +
+                    sizeMatrix +
+                    "_" +
+                    i +
+                    "_" +
+                    j +
+                    '"/>';
+            }
         }
         $newMatrix = $newMatrix + " </div>";
     }
@@ -198,14 +239,12 @@ $("#sizeMatrixButton").click(function () {
         $("#CustomSizeInput").length
     ) {
         delete3Last(".none", ".newMatrix", ".lineX");
-        $lineX = createLineX(+$("#CustomSizeInput").val());
         $newMatrix = createInputMatrix(+$("#CustomSizeInput").val());
-        addNewElement($lineX + $newMatrix, ".Matrix");
+        addNewElement($newMatrix, ".Matrix");
     } else {
         delete3Last(".CustomSize", ".newMatrix", ".lineX");
-        $lineX = createLineX($("#sizeMatrix").val().split("x")[0]);
         $newMatrix = createInputMatrix($("#sizeMatrix").val().split("x")[0]);
-        addNewElement($lineX + $newMatrix, ".Matrix");
+        addNewElement($newMatrix, ".Matrix");
     }
 });
 

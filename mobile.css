@@ -2,7 +2,7 @@ body {
     margin: 0;
 }
 .matrixCalc {
-    width: 60%;
+    width: 100%;
     margin: auto;
 }
 input[type="text"] {
@@ -28,7 +28,6 @@ input[type="reset"] {
     cursor: pointer;
 }
 select {
-    margin-top: 5%;
     width: 100%;
     padding: 16px 20px;
     border: none;
