@@ -1,2 +1,3 @@
 # method-Gausa-js
-Страница решающая системы уравнений через метод Гаусса. Функци вычислений написанны на чистом js. Интерфейс написан на jquery
+
+#### The page for solving systems of equations using the Gauss method. The calculation functions are written in js. The interface is written in jquery
